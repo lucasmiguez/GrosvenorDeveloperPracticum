@@ -1,5 +1,6 @@
 ﻿using System;
 using Application;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace GrosvenorInHousePracticum
 {
@@ -7,12 +8,25 @@ namespace GrosvenorInHousePracticum
     {
         static void Main()
         {
-            var server = new Server(new DishManager());
+            var serviceProvider = new ServiceCollection()
+                .AddSingleton<IMenu, DishManagerMorning>()
+                .AddSingleton<IMenuFactory, MenuFactory>()
+                .AddSingleton<IServer, Server>()
+                .BuildServiceProvider();
+
+            var server = serviceProvider.GetService<IServer>();
+
             while (true)
             {
-                var unparsedOrder = Console.ReadLine();
-                var output = server.TakeOrder(unparsedOrder);
-                Console.WriteLine(output);
+
+                Console.WriteLine("Enter period (morning/evening):");
+                var period = Console.ReadLine();
+
+                Console.WriteLine("Enter dishes (comma separated):");
+                var dishes = Console.ReadLine();
+                
+                var output = server.TakeOrder(period.Replace(" ",""), dishes.Replace(" ", ""));
+                Console.WriteLine( output);
             }
         }
     }

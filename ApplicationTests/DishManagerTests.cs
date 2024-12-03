@@ -9,12 +9,12 @@ namespace ApplicationTests
     [TestFixture]
     public class DishManagerTests
     {
-        private DishManager _sut;
+        private DishManagerMorning _sut;
 
         [SetUp]
         public void Setup()
         {
-            _sut = new DishManager();
+            _sut = new DishManagerMorning();
         }
 
         [Test]

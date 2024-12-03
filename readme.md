@@ -27,7 +27,7 @@ Solution must:
 
 **Functional Requirements:**
 
-1. Add ability to switch between morning and evening and have that be the first required parameter (case insensitive)
+||||| OK |||||||||  1. Add ability to switch between morning and evening and have that be the first required parameter (case insensitive)
 2. Add ability to have different dishes in the morning and at night (See sample input/output below)
 3. You can have multiple orders of coffee in the morning (but still no more than 1 each of the other Dish Types)
 4. Dessert is not available as a morning Dish Type

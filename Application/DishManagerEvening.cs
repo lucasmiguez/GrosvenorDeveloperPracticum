@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Application
 {
-    public class DishManager : IDishManager
+    public class DishManagerEvening : IMenu
     {
         /// <summary>
         /// Takes an Order object, sorts the orders and builds a list of dishes to be returned. 
@@ -32,13 +32,13 @@ namespace Application
         /// <param name="returnValue">a list of dishes, - get appended to or changed </param>
         private void AddOrderToList(int order, List<Dish> returnValue)
         {
-            string orderName = GetOrderName(order);
-            var existingOrder = returnValue.SingleOrDefault(x => x.DishName == orderName);
+            var dishEveninng = GetOrderName(order);
+            var existingOrder = returnValue.SingleOrDefault(x => x.DishName == dishEveninng.Name);
             if (existingOrder == null)
             {
                 returnValue.Add(new Dish
                 {
-                    DishName = orderName,
+                    DishName = dishEveninng.Name,
                     Count = 1
                 });
             } else if (IsMultipleAllowed(order))
@@ -47,34 +47,37 @@ namespace Application
             }
             else
             {
-                throw new ApplicationException(string.Format("Multiple {0}(s) not allowed", orderName));
+                throw new ApplicationException(string.Format("Multiple {0}(s) not allowed", dishEveninng.Name));
             }
         }
 
-        private string GetOrderName(int order)
+        private EveningDish GetOrderName(int order)
         {
             switch (order)
             {
+                case 0:
+                    return new EveningDish("", "", order);    
                 case 1:
-                    return "steak";
+                    return new EveningDish("steak", "entree", order);
                 case 2:
-                    return "potato";
+                    return new EveningDish("potato", "side", order);
                 case 3:
-                    return "wine";
+                    return new EveningDish("wine", "drink", order);
                 case 4:
-                    return "cake";
+                    return new EveningDish("cake", "dessert", order);
                 default:
                     throw new ApplicationException("Order does not exist");
-
             }
         }
-
 
         private bool IsMultipleAllowed(int order)
         {
             switch (order)
             {
-                case 2:
+
+                case 0: //No Item
+                    return true;
+                case 2: //potato
                     return true;
                 default:
                     return false;
