@@ -18,6 +18,9 @@ namespace Application
         {
             try
             {
+                if (period.ToLower() != "morning" && period.ToLower() != "evening")
+                    return "Invalid period specified. Enter period (morning/evening)";
+
                 var menu = _menuFactory.CreateMenu(period);
                 
                 Order order = ParseOrder(unparsedOrder);

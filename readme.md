@@ -28,17 +28,17 @@ Solution must:
 **Functional Requirements:**
 
 ||||| OK |||||||||  1. Add ability to switch between morning and evening and have that be the first required parameter (case insensitive)
-2. Add ability to have different dishes in the morning and at night (See sample input/output below)
-3. You can have multiple orders of coffee in the morning (but still no more than 1 each of the other Dish Types)
-4. Dessert is not available as a morning Dish Type
+||||| OK |||||||||  2. Add ability to have different dishes in the morning and at night (See sample input/output below)
+||||| OK |||||||||  3. You can have multiple orders of coffee in the morning (but still no more than 1 each of the other Dish Types)
+||||| OK |||||||||  4. Dessert is not available as a morning Dish Type
 5. Preserve existing requirements:
-    - You must enter a comma delimited list of Dish Types with at least one selection
-    - The output must print Dish Names in the following order: entrée, side, drink, dessert
-    - If invalid selection is encountered, then print &quot;error&quot;
-    - Ignore whitespace in the input
-    - Each Dish Type is optional (i.e. can have zero if not entered in the input)
-    - You can have multiple orders of potatoes (but still no more than 1 each of the other Dish Types)
-    - If more than one Dish Type is entered, output it once, followed by &quot;(xN)&quot;, e.g. &quot;potato(x2)&quot;
+    ||||| OK ||||||||| - You must enter a comma delimited list of Dish Types with at least one selection
+    ||||| OK ||||||||| - The output must print Dish Names in the following order: entrée, side, drink, dessert
+    ||||| OK ||||||||| - If invalid selection is encountered, then print &quot;error&quot;
+    ||||| OK ||||||||| - Ignore whitespace in the input
+    ||||| OK ||||||||| - Each Dish Type is optional (i.e. can have zero if not entered in the input)
+    ||||| OK ||||||||| - You can have multiple orders of potatoes (but still no more than 1 each of the other Dish Types)
+    ||||| OK |||||||||  - If more than one Dish Type is entered, output it once, followed by &quot;(xN)&quot;, e.g. &quot;potato(x2)&quot;
 
 **Dishes for Morning**
 
