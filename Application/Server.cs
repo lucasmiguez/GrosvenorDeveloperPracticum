@@ -5,20 +5,28 @@ namespace Application
 {
     public class Server : IServer
     {
-        private readonly IDishManager _dishManager;
+        private readonly IMenu _dishManager;
+        private readonly IMenuFactory _menuFactory;
 
-        public Server(IDishManager dishManager)
+        public Server(IMenu dishManager, IMenuFactory menuFactory)
         {
             _dishManager = dishManager;
+            _menuFactory = menuFactory;
         }
         
-        public string TakeOrder(string unparsedOrder)
+        public string TakeOrder(string period, string unparsedOrder)
         {
             try
             {
+                if (period.ToLower() != "morning" && period.ToLower() != "evening")
+                    return "Invalid period specified. Enter period (morning/evening)";
+
+                //Factory Method Pattern
+                var menu = _menuFactory.CreateMenu(period);
+                
                 Order order = ParseOrder(unparsedOrder);
-                List<Dish> dishes = _dishManager.GetDishes(order);
-                string returnValue = FormatOutput(dishes);
+                var availableDishes = menu.GetDishes(order);
+                string returnValue = FormatOutput(availableDishes);
                 return returnValue;
             }
             catch (ApplicationException)

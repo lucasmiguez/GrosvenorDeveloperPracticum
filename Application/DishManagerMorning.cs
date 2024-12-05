@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Application
 {
-    public class DishManager : IDishManager
+    public class DishManagerMorning : IMenu
     {
         /// <summary>
         /// Takes an Order object, sorts the orders and builds a list of dishes to be returned. 
@@ -32,13 +32,13 @@ namespace Application
         /// <param name="returnValue">a list of dishes, - get appended to or changed </param>
         private void AddOrderToList(int order, List<Dish> returnValue)
         {
-            string orderName = GetOrderName(order);
-            var existingOrder = returnValue.SingleOrDefault(x => x.DishName == orderName);
+            var dishMorning = GetOrderName(order);
+            var existingOrder = returnValue.SingleOrDefault(x => x.DishName == dishMorning.Name);
             if (existingOrder == null)
             {
                 returnValue.Add(new Dish
                 {
-                    DishName = orderName,
+                    DishName = dishMorning.Name,
                     Count = 1
                 });
             } else if (IsMultipleAllowed(order))
@@ -47,22 +47,22 @@ namespace Application
             }
             else
             {
-                throw new ApplicationException(string.Format("Multiple {0}(s) not allowed", orderName));
+                throw new ApplicationException(string.Format("Multiple {0}(s) not allowed", dishMorning.Name));
             }
         }
 
-        private string GetOrderName(int order)
+        private MorningDish GetOrderName(int order)
         {
             switch (order)
             {
+                case 0: // No item
+                    return new MorningDish("", "", order);
                 case 1:
-                    return "steak";
+                    return new MorningDish("egg","entree", order);
                 case 2:
-                    return "potato";
+                    return new MorningDish("toast", "side", order);
                 case 3:
-                    return "wine";
-                case 4:
-                    return "cake";
+                    return new MorningDish("coffee", "drink", order);
                 default:
                     throw new ApplicationException("Order does not exist");
 
@@ -74,7 +74,9 @@ namespace Application
         {
             switch (order)
             {
-                case 2:
+                case 0: // No Item
+                    return true;    
+                case 3: // Coffee
                     return true;
                 default:
                     return false;

@@ -8,7 +8,7 @@
         /// </summary>
         /// <param name="unparsedOrder">for example 1,2,3</param>
         /// <returns>for example: steak,potato,wine</returns>
-        string TakeOrder(string unparsedOrder);
+        string TakeOrder(string period, string unparsedOrder);
 
     }
 }

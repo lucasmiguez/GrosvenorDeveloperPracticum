@@ -9,24 +9,24 @@ namespace ApplicationTests
     [TestFixture]
     public class DishManagerTests
     {
-        private DishManager _sut;
+        private DishManagerMorning _dishMorning;
 
         [SetUp]
         public void Setup()
         {
-            _sut = new DishManager();
+            _dishMorning = new DishManagerMorning();
         }
 
         [Test]
         public void EmptyListReturnsEmptyList()
         {
             var order = new Order();
-            var actual = _sut.GetDishes(order);
+            var actual = _dishMorning.GetDishes(order);
             Assert.AreEqual(0, actual.Count);
         }
 
         [Test]
-        public void ListWith1ReturnsOneSteak()
+        public void ListWith1ReturnsOneEgg()
         {
             var order = new Order
             {
@@ -36,9 +36,9 @@ namespace ApplicationTests
                 }
             };
 
-            var actual = _sut.GetDishes(order);
+            var actual = _dishMorning.GetDishes(order);
             Assert.AreEqual(1, actual.Count);
-            Assert.AreEqual("steak", actual.First().DishName);
+            Assert.AreEqual("egg", actual.First().DishName);
             Assert.AreEqual(1, actual.First().Count);
         }
     }
