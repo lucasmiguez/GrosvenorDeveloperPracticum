@@ -21,11 +21,11 @@ namespace Application
                 if (period.ToLower() != "morning" && period.ToLower() != "evening")
                     return "Invalid period specified. Enter period (morning/evening)";
 
+                //Factory Method Pattern
                 var menu = _menuFactory.CreateMenu(period);
                 
                 Order order = ParseOrder(unparsedOrder);
                 var availableDishes = menu.GetDishes(order);
-                //List<Dish> dishes = _dishManager.GetDishes(order);
                 string returnValue = FormatOutput(availableDishes);
                 return returnValue;
             }

@@ -55,7 +55,7 @@ namespace Application
         {
             switch (order)
             {
-                case 0:
+                case 0: // No item
                     return new MorningDish("", "", order);
                 case 1:
                     return new MorningDish("egg","entree", order);

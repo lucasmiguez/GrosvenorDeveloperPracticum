@@ -55,7 +55,7 @@ namespace Application
         {
             switch (order)
             {
-                case 0:
+                case 0: // No Item
                     return new EveningDish("", "", order);    
                 case 1:
                     return new EveningDish("steak", "entree", order);
@@ -74,7 +74,6 @@ namespace Application
         {
             switch (order)
             {
-
                 case 0: //No Item
                     return true;
                 case 2: //potato
